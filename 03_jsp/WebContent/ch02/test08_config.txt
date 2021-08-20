@@ -1,0 +1,4 @@
+test08_config.txt
+
+8.config : JSP페이지의 서블릿 설정 데이터 초기화 정보 객체이다.
+

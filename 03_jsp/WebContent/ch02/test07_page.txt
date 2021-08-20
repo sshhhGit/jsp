@@ -1,0 +1,5 @@
+text07_page.txt
+
+7. page
+
+page 객체는 JSP페이지의 서블릿 객체(현재 JSP페이지를 말한다)

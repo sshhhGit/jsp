@@ -1,0 +1,29 @@
+01_문서.txt
+
+
+
+include Action tag
+
+<forward>액션과 <include>액션은 형식이 같다
+
+형식1
+<jsp:include page="로컬url"/>
+
+형식2
+<jsp:include page="로컬url"/>
+ <jsp:param name="id" value="kim"/>
+ <jsp:param name="pw" value="k123"/>
+ <jsp:param name="name" value="김몰라"/>
+</jsp;include>
+
+*forward액션은 제어권이 넘어간다.
+
+*include액션은 제어권이 넘어가서 처리를 하고
+결과를 포함 시킨다
+------------------------------------------------
+
+ch04_includeaction/01_include_action
+
+includeActionTest.html
+includeActionTest.jsp
+include

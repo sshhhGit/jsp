@@ -1,0 +1,73 @@
+문서_cookie.txt
+WebContent
+   ch06_cookie 폴더
+
+쿠키(cookie) : 서버를 접속 하면 , 서버가 클라이언트에 심은 정보
+세션(session) : 서버측에서 관리 
+
+
+쿠키(쿠폰) : 웹 브라우저를 통해서 클라이언트에 정보를 저장한다 
+진행
+1. 클라이언트가 서버로 요청
+2. 서버는 클라이언트에게 쿠키를 설정한다 
+3. 다음에 클라이언트가 그 사이트를 방문하면 웹 브라우저는 쿠키정보를 서버에게 전달한다
+
+■ 한글처리 
+  URLEncoder.encode()메서드로 인코딩(쿠키 심을때 )
+  URLDecoder.decode()메서드로 디코딩(쿠키를 얻을때)하는 과정이 필요하다
+  
+■ 쿠키 설정 절차
+  1. Cookie 개게를 생성(설정)한다
+  2. 쿠키 속성 부여
+  3. 쿠키를 전송한다
+
+■ 생성자
+ Cookie(String name,String value): 이름이 name이고 값이 value이다 
+ 예:  Cookie("name","홍길동")
+ 예:  Cookie("id","hong")
+ 
+■ 메서드 
+ setXxx() : 속성 부여할 때 
+ 예:
+ void setMaxAge(int expiry) : 쿠키 유효 기간 설정한다
+ void setValue(String newValue) : 쿠키값을 설정 한다   
+ 
+■ 쿠키 설정 예제 
+  HttpServletResponse(응답 클래스)를 이용하여 웹브라우저에 쿠키를 심는다 
+  예:
+  response.addCookie(cookie);//쿠키 심는다  : 서블릿 
+  response.addCookie(cookie)://쿠키 심는다  :  JSP(response내장 객체)
+
+■ 쿠키 정보를 얻는 절차
+  1. 사용자가 요청하였을때 모든 쿠키를 얻어온다
+  2. 원하는 쿠키의 이름을 통해서 정보를 얻어낸다 
+  3. 이름을 찾았으면 이름에 해당하는 쿠키값을 얻는다 
+
+■ 쿠키 정보를 얻는 메서드들
+  int getMAxAge() : 쿠키 유효기간을 얻는다 
+  String getName() : 쿠키이름을 얻는다 
+  String getValue() : 쿠키값을 얻는다 
+  
+■ 쿠키 얻는 예:
+  HttpServletRequest의 getCookie()메서드를 통해서 모든 쿠키를 얻는다 
+  Cookie cookies[]=request.getCookies();//모든 쿠키를 얻는다 
+  
+  //쿠키 이름을 통해서 원하는 쿠키값을 찾는다 
+  String name=cookies[i].getName();
+  if(name.equals("id")){
+        처리
+    String val=cookies[i].getValue();
+   } 
+
+■ 실습
+cookieView.jsp
+cookieMake.jsp
+
+
+
+  
+  
+   
+ 
+ 
+

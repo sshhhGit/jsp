@@ -1,0 +1,51 @@
+01_문서.txt
+
+forward 액션 태그(JSP태그)
+	: JSP에서 조건에 따라서 분기한다.
+	
+형식1
+<jsp:forward page="로컬url"/>
+
+형식2
+<jsp:forward page="로컬url">
+	<jsp : param name="id" value="kim"/>
+	<jsp : param name="pw" value="k123"/>
+	<jsp : param name="name" value="김철수"/>
+</jsp:forward>
+
+넘겨받은 페이지에서
+request.getParameter("id");
+request.getParameter("pw");
+request.getParameter("name");
+--------------------------------
+</jsp:forward> 액션은 JSP 컨테이너에서 http 요청을 다른 페이지로 보내는것
+
+http요청은 처음 만들어진 TCP 하나만 있는 것이다.
+
+그렇기 때문에 forward액션은 첫번째에서 보낸 데이터를
+
+ch03_forward/01_forward 폴더
+
+forwardForm.jsp
+forwardPro.jsp
+forwardPro2.jsp
+
+ch03_forward/02_forward 폴더
+
+age.html
+age.jsp
+
+aa.jsp
+bb.jsp
+cc.jsp
+dd.jsp
+
+ch03_forward/03_forward 폴더
+
+bloodType.html
+bloodType.jsp
+
+A.jsp
+AB.jsp
+B.jsp
+O.jsp

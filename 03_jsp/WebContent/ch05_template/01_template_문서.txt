@@ -1,0 +1,46 @@
+01_temtplate_문서.txt
+
+자바 awt에서 Layout과 같은 기능
+Layout(배치, 디자인)
+template(jsp에서 동적배치)
+tiles(스프링에서 동적 배치)
+
+ch05_template
+	ex01 폴더
+		top.jsp
+		left.jsp
+		bottom.jsp
+		
+		content.jsp
+		template.jsp
+		main.jsp(RUN)
+		
+ 	ex02 폴더
+		top.jsp
+		bottom.jsp
+		
+		dc.jsp
+		dcleft.jsp
+		
+		pmp.jsp(RUN)
+		pmp.lfet.jsp
+		
+		pageController.jsp
+		tmeplate.jsp
+		main.jsp(RUN)
+		
+	ex03 폴더
+	
+		top.jsp
+		left.jsp
+		bottom.jsp
+		
+		newItem.jsp
+		bestItem.jsp
+		
+		template.jsp
+		
+		join.jsp
+		login.jsp		
+		
+		

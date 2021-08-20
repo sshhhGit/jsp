@@ -1,0 +1,20 @@
+test04_application.txt
+
+5.application
+프로젝트 이름이 어플리케이션 이름이다.
+
+application = 프로젝트 = context
+
+웹 어플리케이션 구조
+ROOT
+03_jsp/WEB-INF/classes
+			  /lib/*.jar
+			  /web.xml 웹 어플리케이션 환경 설정
+			  
+이클립스
+ src/java 클래스 작성
+ WebContent/ JSP, HTML, CSS, JavaScript, JQuery
+ 
+ 실습 
+ 
+ web.xml : 초기 파라미터를 넣는다

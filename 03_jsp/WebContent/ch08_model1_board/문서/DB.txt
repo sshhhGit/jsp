@@ -1,0 +1,25 @@
+mysql> create table board1( 						
+    num int not null auto_increment primary key,	//글번호
+    writer varchar(30) not null,					//글쓴이
+    subject varchar(50) not null,					//글제목
+    content text not null,							//글내용
+    pw varchar(10) not null,						//암호
+    wdate date,										//날짜
+    readcount int unsigned default 0,				//조회수
+    ip varchar(20)									//아이피
+    );
+    
+    
+    
+    
+    writeForm.jsp
+    writePro.jsp
+    
+    list.jsp
+    
+    content.jsp
+    
+    editForm.jsp
+    editPro.jsp
+    
+    deletePro.jsp

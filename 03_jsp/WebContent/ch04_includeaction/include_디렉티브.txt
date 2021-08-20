@@ -1,0 +1,36 @@
+include_디렉티브.txt
+
+<%@ page%>
+<%@ include%>
+
+※include액션과 include 디렉티브의 차이점은 include디렉티브는 소스(내용)이 포함되고 include액션은 처리 결과가 포함된다
+ 
+ include디렉티브는 외부데이터(*.jsp, *.html, *.txt)를 jsp에 포함시킨다. 단순히 소스만 포함된다.
+ 그래서 포함될 문서는 헤더부분을 넣지 않는다.
+ 
+ <html>
+  <body>
+  	<html>     <= 포함내용
+  	 <body>
+  	 </body>
+  	</html>
+  </body>
+ </html>
+ 
+ 형식
+ <%@ include file="a.html"%>
+ <%@ include file="a.jsp"%>
+ <%@ include file="a.txt"%>
+ 
+실습
+ ch04_includeaction/03_include_directive
+ name.txt
+ email.txt
+ copyright.jsp(name.txt, email.txt 포함)
+ includeTest.jsp(copyright.jsp 포함)
+ 
+ ch04_includeaction/04_include_directive
+ 
+ top.jsp
+ bottom.jsp
+ index2.jsp

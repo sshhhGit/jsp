@@ -1,0 +1,14 @@
+내장객체
+
+1. out 			: 웹으로 출력
+2. request 		: 클라이언트 요청을 받는다
+3. response 	: 클라이언트로 응답하기 위한 객체
+
+4.session 		: 한 클라이언트를 관리하는 객체
+5.application 	: 프로젝트가 웹 어플리케이션
+
+6.pageContext
+7.page
+
+8.config
+9.exception
