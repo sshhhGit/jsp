@@ -1,0 +1,23 @@
+WebContent/ch10_upload
+
+자바빈을 이용한 파일업로드와 메일보내기
+
+cos.jar를 다운받는다
+
+http://www.servlets.com
+
+오른쪽아래
+
+Download the package
+
+cos-20.08.zip 받아서, 압축풀고
+
+cos-20.08를 c:\에 복사
+
+c:\cos-20.08.\lib\cos.jar를 
+
+자바경로 : JDk\jre\lib\ext\에 복사
+Tomcat\lib\에 복사
+
+환경변수
+classpath=.;JAVA_HOME%\lib\tools.jar;C:\cos-20.08\lib\cos.jar;

@@ -1,0 +1,147 @@
+WebContent/ ch09_bean
+
+bean.txt
+
+빈 = 빈즈 = 컴포넌트
+
+자바빈즈 : 클래스
+컴포넌트 : awt(Button, TextField, Label), 자바빈즈
+
+-자바빈즈 자바를 소프트웨어 컴포넌트(부품)으로 만들기 위한 기술이다
+  DTO(VO) : 모델빈
+  DAO : 비지니스 로직
+
+-자바빈을 사용하는 이유 : 
+  디자인 부분과 로직부분을 분리하여 작업 할 수있다.
+  디자인(Layout), 
+  Front-end(JSP로 화면에 출력하는일.
+  Back-end(DAO:비지니스 로직:DB작업)
+
+  SI : 개발분야
+  SM : 유지보수
+
+-프로그램 작성의 효율성을 높이기 위해서 소프트웨어 컴포넌트를 만들어서
+  활용한다.
+
+-장점 : 재활용(Button, TextField,,,)
+
+-일반적으로 웹사이트는 디자이너와 프로그래머가 협력하여서 개발하게 된다.
+  프로그래머가 JSP페이지의 이곳 저곳에 자바코드를 입력했을 때,
+  디자이너는 이 페이지를 해석하기 어려워지게 되고, 개발효율 또한 매우 떨어지게 된다.
+
+  그래서 등장하게 된것이 자바 빈이다.
+ 
+  자바빈은 JSP페이지의 디자인 부분과 로직부분을 나눔으로써
+  복잡한 코드를 줄이고 프로그램의 효율을 높일 수 있다.
+
+  <빈 작성 규칙> DTO(VO)
+
+  1. 멤버변수 private를 선언한다
+      private String id;  //은폐필드, 전역변수 = 필드=프로퍼티
+      private String pw;
+
+  2. 멤버변수 값 설정은 메서드를 통해서 한다
+      getXxx() = getter
+      setXxx() = setter
+      변수 이름으로 메서드 이름을 만든다
+       public void setId(String id){
+       this.id = id;
+       }
+
+      public String getId(){
+      retrun id;
+      }
+ 
+  3. 메서드 접근제한자는 반드시 public 으로 한다.
+  4. 메서드 이름 setXxx(), getXxx()은 변수이름으로 만든다
+  5. 멤버변수가 boolean형일때, getXxx()대신 isXxx()로 만든다
+  6. 기타 필요한 멤버변수, 멤버메서드를 사용 할 수있다.
+
+  <<빈 만들기>>
+  package mypa;
+  import~~
+  import~~
+
+  public class TestDTO{
+     private String id;
+     
+     public void setId(String id){
+       this.id = id;
+    }
+
+     public String getId(){
+       return id;
+    }
+  }
+----------------------------
+//컴파일만 한다
+//============================
+
+JSP에서 빈 사용하기
+
+형식1
+<jsp:useBean id="빈 이름" class="" scope=""/>
+
+형식2
+<jsp:useBean id="" class="" scope="">
+  <jsp:setPropery name="빈이름" property=""/> <%--setter메서드 호출--%>
+  <jsp:getPropery name="빈이름" property=""/> <%--getter메서드 호출--%>
+</jsp:useBean>
+
+//=================================
+
+id="빈 이름=객체명"      참조) Test t = new Test();
+class="패키지.클래스명"
+
+scope="적용범위" => page session request application
+page: 디폴트
+request, session : 많이 사용
+
+name="빈 이름 = 객체명"
+property = "빈의 변수"
+
+//====사용 예
+<jsp:useBean id="객체명" class="패키지.클래스명" scope="">
+  <%-- 빈에 값을 세팅할 때--%>
+  <jsp:setPropery name="객체명" property="프로퍼티명=빈의 변수명"/>
+  <jsp:setPropery name="객체명" property="id" value="hong"/>
+
+  <jsp:getPropery name="빈이름" property="프로퍼티 명"/>
+  <jsp:getPropery name="빈이름" property="id"/>
+</jsp:useBean>
+
+★==JSP에서 setProperty 4가지 사용법
+
+1. <jsp:setPropery name="객체명" property="id" value="hong"/>
+
+2. <jsp:setPropery name="객체명" property="id" value="html의 파라미터명"/>
+
+3. <jsp:setPropery name="객체명" property="변수명"/>
+		                   빈의 변수명과 html의 파라미터명이 같을 때
+
+4. <jsp:setPropery name="객체명" property="*"/>
+
+   빈의 변수명과 html의 파라미터명이 모두 같을 때
+
+실습1
+
+src/mypa/TestDTO.java (모델빈)
+mypa.TestDTO
+
+WebContent/ch09_bean/TestBean.jsp
+
+실습2
+
+src/mypa/TestDTO2.java (모델빈)
+mypa.TestDTO2
+
+WebContent/ch09_bean/TestBean2.html
+WebContent/ch09_bean/TestBean2.jsp
+
+실습2
+
+src/mypa/TestDTO3.java (모델빈)
+mypa.TestDTO3
+
+WebContent/ch09_bean/TestBean3.html
+WebContent/ch09_bean/TestBean3.jsp

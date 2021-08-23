@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>fileupload.html</title>
+</head>
+<body>
+  <h2>파일 업로드 예제</h2>
+    <form action="fileupload.jsp" method="post" enctype="multipart/form-data">
+      <table border="1">
+        <tr>
+          <td>
+          "파일선택" 버튼을 눌러 자신의 컴퓨터에 있는 파일을 선택하고<br>
+          "파일 업로드" 버튼을 누르면 됩니다.
+          </td>  
+        </tr>
+        
+        <tr>
+          <td align="center">
+            <input type="file" name="f1">
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <input type="file" name="f2">
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <input type="file" name="f3">
+          </td>
+        </tr>
+        
+        <tr>
+          <td align="center">
+          <input type="submit" value="파일 업로드">
+          </td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>
