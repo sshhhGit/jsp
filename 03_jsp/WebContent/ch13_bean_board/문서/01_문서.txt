@@ -1,0 +1,44 @@
+자바빈 + DB연결
+DTO(VO) : 모델빈 (모델빈에 데이터를 담아서 서버나 클라이언트로 전달)
+
+DTO		: Data Transfer Object
+VO 		: Value Object
+
+DAO 	: 비지니스 로직(DB작업)
+
+자바빈
+.java
+.class
+
+jsp
+	
+1. DB작업
+	C:\>cd mysql55\bin
+	c:\Mysql55\bin>mysql -u root -p 12345
+	
+	mysql>use mydb;
+	show tables;
+	
+	drop table test1;
+	
+	create table test1(
+	id varchar(20) primary key not null,
+	name varchar(30) not null,
+	email varchar(40),
+	tel varchar(14),
+	content text not null
+	);
+	
+	desc test1; --테이블 구조 확인
+	
+	
+src/beandb.BeanDTO.java : 모델 빈
+src/beandb.BeanDAO.java : DAO = 비지니스 로직
+	
+ch13_bean_board
+	JSP
+	writeForm.jsp(입력 폼)
+	writePro.jsp(DAO메서드 호출)
+	
+	list.jsp
+	content.jsp

@@ -1,0 +1,8 @@
+메일보내기 파일 업로드
+ch12_mailupload
+
+src/mailupload.Eamil.Upload.java
+
+ch12_mailupload
+	EmailUpload.html
+	EmailUpload.jsp

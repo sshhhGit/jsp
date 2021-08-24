@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MailSender.html</title>
+</head>
+<body>
+<form action="MailSender.jsp" method="post">
+  <table border="1" align="center">
+    <tr>
+      <td colspan="2" align="center">
+        <font size="5">[메일보내기]</font>
+      <td>
+    </tr>
+    
+    <tr>
+      <td>보내는 사람</td>
+      <td><input type="text" name="from" value="seungho0497@daum.net"></td>
+    </tr>
+    <tr>
+      <td>받는 사람</td>
+      <td><input type="text" name="to" value="pparkmj777@nate.com"></td>
+    </tr>
+    
+    <tr>
+      <td>제목</td>
+      <td><input type="text" name="subject" size="40" value="로또1등"></td>
+    </tr>
+    
+    <tr>
+      <td colspan="2">
+        <textarea rows="10" cols="50" name="content"></textarea>
+      </td>
+    </tr>
+    
+    <tr>
+      <td colspan="2" align="center">
+        <input type="submit" value="메일보내기">
+        <input type="reset" value="취소">
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
