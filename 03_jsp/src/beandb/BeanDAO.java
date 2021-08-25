@@ -102,7 +102,7 @@ public class BeanDAO {
 		Statement stmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select * from test1 whree id='"+id+"'";
+		String sql = "select * from test1 where id='"+id+"'";
 		BeanDTO dto = null;
 		
 		try {
