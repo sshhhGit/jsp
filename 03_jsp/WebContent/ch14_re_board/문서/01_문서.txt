@@ -1,0 +1,62 @@
+답글게시판. 글 검색
+
+DTO, DAO 사용
+
+WebContent/
+ch14_re_board
+
+mysql
+
+drop table board;
+
+create table board(
+num int(4) auto_increment primary key,
+name varchar(30) not null,
+subject varchar(5) not null,
+content text not null,
+
+pos int(4) default 0,
+depth int(4),
+regdate date,
+
+pw varchar(10) not null,
+count int(4) default 0,
+ip varchar(20)
+);
+
+
+num int(4) 	: 글 번호, auto_increment : 글 번호 자동 증가
+name 		: 글쓴이
+subject 	: 글제목
+content 	: 글내용
+
+pos 		: 글순서 처리하기 위해
+depth  		: 답글 깊이
+regdate date: 날짜
+
+pw 			: 암호
+count 		: 조회수
+ip 			: 아이피
+============================
+오라클로 한다면 , 일련번호
+
+create sequence board_seq;//일련번호
+drop sequence board_seq;/삭제
+
+board_seq.nextval -- 1씩증가
+=======================================
+
+src/boardre.BoardDTO.java (모델빈)
+scr/boardre.BoardDAO.java (DAO=비지니스 로직=DB작업
+
+WebContent/ch14_re_board
+wirteForm.jsp ==> wirtePro.jsp
+
+list.jsp
+content.jsp ==> 리스트, 새글쓰기, 답글쓰기, 글수정, 글삭제
+
+updateForm.jsp ==> updatePro.jsp
+
+deleteForm.jsp ==> updatePro.jsp
+
+replyForm.jsp ==> replyPro.jsp

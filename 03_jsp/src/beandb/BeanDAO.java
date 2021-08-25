@@ -19,7 +19,9 @@ public class BeanDAO {
 			System.out.println("드라이버 로딩 실패 : " + cnf);
 		}
 	}//const-end
-	
+	//===================================
+	//글 수정
+	//===================================
 	//insert
 	public void insertDB(BeanDTO dto) {
 		Connection con = null;
@@ -90,12 +92,94 @@ public class BeanDAO {
 		}//finally-end
 		
 		return vec;
+		//클라이언트로 보내기
 	}//getList()-end
+	//===================================
+	//글 내용보기
+	//===================================
+	public BeanDTO getContent(String id){
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rs = null;
 		
-	
-	/**
-	   public static void main(String[] args) {
-		 new BeanDAO();
-	}*/
+		String sql = "select * from test1 whree id='"+id+"'";
+		BeanDTO dto = null;
+		
+		try {
+			con = DriverManager.getConnection(URL, USER, PWD);
+			stmt = con.createStatement(); //Statement생성
+			rs = stmt.executeQuery(sql);  //쿼리수행
+			
+			if(rs.next()){
+				dto = new BeanDTO(); //객체생성
+				
+				dto.setId(rs.getString("id"));
+				dto.setName(rs.getString("name"));
+				dto.setEmail(rs.getString("email"));
+				dto.setTel(rs.getString("tel"));
+				dto.setContent(rs.getString("content"));
+			}//if()-end
+		} catch (Exception ex1) {
+			System.out.println("getContent() 예외 : " + ex1);
+		}finally{
+			try {
+				if(con != null){con.close();}
+				if(stmt != null){stmt.close();}
+				if(rs != null){rs.close();}
+			} catch (Exception ex2) {}
+		}//finally-end
+		return dto;
+	}
+	//===============================
+	//DB 글수정
+	//===============================
+	public void updatePro(BeanDTO dto){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = DriverManager.getConnection(URL, USER, PWD);
+			String sql = "update test1 set name=?,email=?,tel=?,content=? where id=?";
+			pstmt = con.prepareStatement(sql); //생성시 인자 들어감
+			
+			//?값 채우기
+			pstmt.setString(1, dto.getName());
+			pstmt.setString(2, dto.getEmail());
+			pstmt.setString(3, dto.getTel());
+			pstmt.setString(4, dto.getContent());
+			pstmt.setString(5, dto.getId());
+			
+			pstmt.executeUpdate(); //쿼리 수행
+			
+		} catch (Exception ex1) {
+			System.out.println("updatePro() 예외 : " + ex1);
+		}finally{
+			try {
+				if(con != null){con.close();}
+				if(pstmt != null){pstmt.close();}
+			} catch (Exception ex2) {}
+		}//finally-end
+	}
+	//===============================
+	//DB 글수정
+	//===============================
+	public void deletePro(String id) {
+		Connection con = null;
+		Statement stmt = null;
+		
+		try {
+			con = DriverManager.getConnection(URL, USER, PWD);
+			stmt = con.createStatement();
+			stmt.executeUpdate("delete from test1 where id='"+id+"'"); //쿼리수행
+			
+		} catch (Exception ex1) {
+			System.out.println("deletePro() 예외 : " + ex1);
+		}finally{
+			try {
+				if(con != null){con.close();}
+				if(stmt != null){stmt.close();}
+			} catch (Exception ex2) {}
+		}//finally-end
+	}
 	
 }//class-end
