@@ -137,4 +137,90 @@ public class BoardDAO {
 		}//finally-end
 		return vec;
 	}//getList()-end
+	
+	//===========
+	//조회수
+	//===========
+	public void upCount(int num){
+		try {
+			con = DriverManager.getConnection(URL, USER, PWD);
+			sql = "update board set count = count+1 where num=" + num;
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+		} catch (Exception ex1) {
+			System.out.println("upCount() 예외 : " + ex1);
+		} finally{
+			try {
+				if(con != null){con.close();}
+				if(pstmt != null){pstmt.close();}
+			} catch (Exception ex2) {}
+		}//finally-end
+	}//upCount()-end
+	
+	//=====================
+	//글내용 보기, 글 수정 폼에서도 사용
+	//=====================
+	public BoardDTO getBoard(int num){
+		BoardDTO dto = new BoardDTO(); //객체생성
+		try {
+			con = DriverManager.getConnection(URL, USER, PWD);
+			sql = "select * from board where num=" + num;
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				dto.setNum(rs.getInt("num"));
+				dto.setName(rs.getString("name"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setContent(rs.getString("content"));
+				
+				dto.setPos(rs.getInt("pos"));
+				dto.setDepth(rs.getInt("depth"));
+				
+				dto.setRegdate(rs.getString("regdate"));
+				dto.setPw(rs.getString("pw"));
+				
+				dto.setCount(rs.getInt("count"));
+				dto.setIp(rs.getString("ip"));
+			}//if()-end
+		} catch (Exception ex1) {
+			System.out.println("getBoard() 예외 : " + ex1);
+		} finally{
+			try {
+				if(con != null){con.close();}
+				if(pstmt != null){pstmt.close();}
+				if(rs != null){rs.close();}
+			} catch (Exception ex2) {}
+		}//finally-end
+		return dto;
+	}//getBoard()-end
+	
+	//=============
+	//DB글 수정
+	//=============
+	public void updateBoard(BoardDTO dto){
+		try {
+			con = DriverManager.getConnection(URL, USER, PWD);
+			sql = "update board set name=?,subject=?,content=? where num=?";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			//?값 채우기
+			pstmt.setString(1, dto.getName());
+			pstmt.setString(2, dto.getSubject());
+			pstmt.setString(3, dto.getContent());
+			pstmt.setInt(4, dto.getNum());
+			
+			pstmt.executeUpdate(); //쿼리수행, (insert, update, delete)
+		} catch (Exception ex1) {
+			System.out.println("updateBoard() 예외 : " + ex1);
+		} finally{
+			try {
+				if(con != null){con.close();}
+				if(pstmt != null){pstmt.close();}
+			} catch (Exception ex2) {}
+		}//finally-end
+	}//updateBoard()-end
 }
