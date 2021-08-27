@@ -1,0 +1,63 @@
+Tomcat_다운_설치문서 참조
+
+Tomcat설치 하고
+server.xml 에서 port 9000검색하여
+URIEncoding="UTF-8" 추가한다 
+이것은 get방식 한글 처리이다
+
+3개 파일 
+el_api.jar
+jsp_api.jar
+servlet_api.jar 파일을
+JDK경로/jre/lib/ext/ 복사
+
+이클립스 재구동 
+---------------------------------  
+
+서블릿=Servlet
+새프로젝트 : Dynamic Web Project
+이름: 03_servlet
+        next  next
+        web.xml 체크
+----------------------------------
+src >> 우클릭 >> NEW >> class
+
+소스 입력 하고 
+
+저장
+
+web.xml 등록 하고 
+
+웹에서 실행 
+-----------------------------------
+예제 1
+src >> 우클릭 >> NEW >> class
+
+소스 입력 하고 
+
+저장
+
+web.xml 등록 하고 
+
+웹에서 실행 
+
+-----------------------------------      
+예제3
+WebContent
+   html 폴더 만들고 
+     test03.html 작성 ----- 클라이언트
+     
+src/ ServletText03.java  -----서버
+
+-----------------------------------   
+예제4 : 서블릿을 web.xml에 등록하지 않고 
+             어노테이션 사용  (스프링 어노테이션 사용) 
+
+WebContent/html/test04.html
+src/ServletTest04.java
+
+
+
+     
+        
+        
