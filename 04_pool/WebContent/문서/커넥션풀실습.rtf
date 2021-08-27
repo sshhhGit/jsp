@@ -1,0 +1,150 @@
+{\rtf1\ansi\ansicpg949\deff0\deflang1033\deflangfe1042{\fonttbl{\f0\fnil\fcharset129 \'b8\'bc\'c0\'ba \'b0\'ed\'b5\'f1;}{\f1\fnil Consolas;}}
+{\colortbl ;\red0\green0\blue0;\red0\green128\blue128;\red63\green127\blue127;\red127\green0\blue127;\red42\green0\blue255;\red0\green0\blue255;\red191\green95\blue63;\red127\green0\blue85;\red63\green127\blue95;}
+{\*\generator Msftedit 5.41.21.2509;}\viewkind4\uc1\pard\sl240\slmult1\lang18\f0\fs20\'c4\'bf\'b3\'d8\'bc\'c7\'c7\'ae \'bb\'e7\'bf\'eb \'bd\'c7\'bd\'c0\par
+\f1\fs32 ================\par
+MySql \par
+================\par
+create database ch20;\par
+\par
+use ch20;\par
+\par
+create table test(\par
+name \cf1\ul varchar\cf0\ulnone (20) not null,\par
+email \cf1\ul varchar\cf0\ulnone (40) not null,\par
+\cf1\ul addr\cf0\ulnone  \cf1\ul varchar\cf0\ulnone (50) not null\par
+);\par
+\f0\fs20\par
+\par
+\par
+===================================\par
+META-INF / context.xml\par
+===================================\par
+\par
+\par
+\cf2\f1\fs32 <?\cf3 xml\cf0  \cf4 version\cf1 =\cf5\i "1.0"\cf0\i0  \cf4 encoding\cf1 =\cf5\i "UTF-8"\cf2\i0 ?>\cf0\par
+\par
+\cf2 <\cf3 Context\cf0  \cf4 docBase\cf1 =\cf5\i "ch20_pool"\cf0\i0  \cf4 path\cf1 =\cf5\i "/ch20_pool"\cf0\i0  \cf4 reloadable\cf1 =\cf5\i "true"\cf2\i0 >\cf0\par
+\cf2 <\cf3 Resource\cf0  \par
+\cf4 name\cf1 =\cf5\i "jdbc/mysql"\cf0\i0  \par
+\cf4 auth\cf1 =\cf5\i "Container"\cf0\i0  \par
+\cf4 type\cf1 =\cf5\i "javax.sql.DataSource"\cf0\i0  \par
+\cf4 driverClassName\cf1 =\cf5\i "com.mysql.jdbc.Driver"\cf0\i0  \par
+\cf4 url\cf1 =\cf5\i "jdbc:mysql://localhost:3306/ch20?autoReconnect=true"\cf0\i0  \par
+\cf4 username\cf1 =\cf5\i "root"\cf0\i0  \par
+\cf4 password\cf1 =\cf5\i "12345"\cf0\i0  \par
+\cf4 maxWait\cf1 =\cf5\i "5000"\cf0\i0  \par
+\cf4 maxActive\cf1 =\cf5\i "20"\cf0\i0  \par
+\cf4 testOnBorrow\cf1 =\cf5\i "true"\cf0\i0  \par
+\cf2 />\cf0\par
+\par
+\cf2 <\cf3 Resource\cf0  \par
+\cf4 name\cf1 =\cf5\i "jdbc/oracle"\cf0\i0   \par
+\cf4 auth\cf1 =\cf5\i "Container"\cf0\i0  \par
+\cf4 type\cf1 =\cf5\i "javax.sql.DataSource"\cf0\i0   \par
+\cf4 driverClassName\cf1 =\cf5\i "oracle.jdbc.driver.OracleDriver"\cf0\i0  \par
+\cf4 url\cf1 =\cf5\i "jdbc:oracle:thin:@211.183.0.66:1521:ORCL"\cf0\i0    \par
+\cf4 username\cf1 =\cf5\i "scott"\cf0\i0  \par
+\cf4 password\cf1 =\cf5\i "tiger"\cf0\i0  \par
+\cf4 maxWait\cf1 =\cf5\i "5000"\cf0\i0  \par
+\cf4 maxActive\cf1 =\cf5\i "20"\cf0\i0  \par
+\cf4 testOnBorrow\cf1 =\cf5\i "true"\cf0\i0  \par
+\cf2 />\cf0\par
+\par
+\cf2 </\cf3 Context\cf2 >\cf0\par
+\pard\sl240\slmult1\f0\fs20 ===================================\par
+\pard\sl240\slmult1 WEB-INF/web.xml\par
+\pard\sl240\slmult1 ===================================\par
+\pard\sl240\slmult1\par
+\cf2\f1\fs32 <?\cf3 xml\cf0  \cf4 version\cf1 =\cf5\i "1.0"\cf0\i0  \cf4 encoding\cf1 =\cf5\i "UTF-8"\cf2\i0 ?>\cf0\par
+\cf2 <\cf3 web-app\cf0  \cf4 xmlns:xsi\cf1 =\cf5\i "http://www.w3.org/2001/XMLSchema-instance"\cf0\i0  \cf4 xmlns\cf1 =\cf5\i "http://java.sun.com/xml/ns/javaee"\cf0\i0  \cf4 xsi:schemaLocation\cf1 =\cf5\i "http://java.sun.com/xml/ns/javaee {\field{\*\fldinst{HYPERLINK "http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"}}{\fldrslt{\ul\cf6 http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd}}}\f1\fs32 "\cf0\i0  \cf4 id\cf1 =\cf5\i "WebApp_ID"\cf0\i0  \cf4 version\cf1 =\cf5\i "3.0"\cf2\i0 >\cf0\par
+\cf1   \cf2 <\cf3 display-name\cf2 >\cf1 08_jsp\cf2 </\cf3 display-name\cf2 >\cf0\par
+\cf1   \cf0\par
+\cf1   \cf2 <\cf3 resource-ref\cf2 >\cf1  \cf0\par
+\cf1     \cf2 <\cf3 description\cf2 >\cf1\ul jsptest\ulnone  \ul db\cf2\ulnone </\cf3 description\cf2 >\cf1  \cf0\par
+\cf1     \cf2 <\cf3 res-ref-name\cf2 >\cf1\ul jdbc\ulnone /\ul mysql\cf2\ulnone </\cf3 res-ref-name\cf2 >\cf1  \cf0\par
+\cf1     \cf2 <\cf3 res-type\cf2 >\cf1 javax.sql.DataSource\cf2 </\cf3 res-type\cf2 >\cf1  \cf0\par
+\cf1     \cf2 <\cf3 res-auth\cf2 >\cf1 Container\cf2 </\cf3 res-auth\cf2 >\cf1  \cf0\par
+\cf1   \cf2 </\cf3 resource-ref\cf2 >\cf1  \cf0\par
+\cf1  \cf0\par
+\cf1   \cf2 <\cf3 resource-ref\cf2 >\cf1  \cf0\par
+\cf1     \cf2 <\cf3 description\cf2 >\cf1\ul jsptest\ulnone  \ul db\cf2\ulnone </\cf3 description\cf2 >\cf1  \cf0\par
+\cf1     \cf2 <\cf3 res-ref-name\cf2 >\cf1\ul jdbc\ulnone /oracle\cf2 </\cf3 res-ref-name\cf2 >\cf1  \cf0\par
+\cf1     \cf2 <\cf3 res-type\cf2 >\cf1 javax.sql.DataSource\cf2 </\cf3 res-type\cf2 >\cf1  \cf0\par
+\cf1     \cf2 <\cf3 res-auth\cf2 >\cf1 Container\cf2 </\cf3 res-auth\cf2 >\cf1  \cf0\par
+\cf1   \cf2 </\cf3 resource-ref\cf2 >\cf1  \cf0\par
+\cf1   \cf0\par
+\cf1    \cf2 <\cf3 welcome-file-list\cf2 >\cf0\par
+\cf1     \cf2 <\cf3 welcome-file\cf2 >\cf1 index.html\cf2 </\cf3 welcome-file\cf2 >\cf0\par
+\cf1    \cf2 </\cf3 welcome-file-list\cf2 >\cf0\par
+\cf2 </\cf3 web-app\cf2 >\par
+\pard\sl240\slmult1\cf0\f0\fs20 ===================================\par
+\pard\sl240\slmult1\cf2\f1\fs32 WebContent\lang1042\f0  / ch20_pool / usePool.jsp\par
+\pard\sl240\slmult1\cf0\lang18\fs20 ===================================\par
+\pard\sl240\slmult1\cf2\lang1042\fs32\par
+\cf7\f1 <%@\cf0  \cf3 page\cf0  \cf4 language\cf1 =\cf5\i "java"\cf0\i0  \cf4 contentType\cf1 =\cf5\i "text/html; charset=EUC-KR"\cf0\i0\par
+    \cf4 pageEncoding\cf1 =\cf5\i "EUC-KR"\cf7\i0 %>\cf0\par
+\cf7 <%@\cf0  \cf3 page\cf0  \cf4 import\cf1 =\cf5\i "java.sql.*"\cf7\i0 %>\cf0\par
+\cf7 <%@\cf0  \cf3 page\cf0  \cf4 import\cf1 =\cf5\i "javax.sql.*"\cf7\i0 %>\cf0\par
+\cf7 <%@\cf0  \cf3 page\cf0  \cf4 import\cf1 =\cf5\i "javax.naming.*"\cf7\i0 %>\cf0\par
+\par
+\cf2 <\cf3 html\cf2 >\cf0\par
+\cf2 <\cf3 body\cf2 >\cf0\par
+\cf2 <\cf3 h2\cf2 >\cf1\f0\'c4\'bf\'b3\'d8\'bc\'c7\'c7\'ae\f1  \f0\'bb\'e7\'bf\'eb\cf2\f1 </\cf3 h2\cf2 >\cf0\par
+\par
+\cf1  \cf2 <\cf3 table\cf0  \cf4 border\cf1 =\cf5\i "1"\cf0\i0  \cf4\ul width\cf1\ulnone =\cf5\i "70%"\cf2\i0 >\cf0\par
+\cf1   \cf2 <\cf3 tr\cf2 >\cf0\par
+\cf1      \cf2 <\cf3 th\cf0  \cf4 width\cf1 =\cf5\i "100"\cf2\i0 >\cf1\f0\'b1\'db\'be\'b4\'c0\'cc\cf2\f1 </\cf3 th\cf2 >\cf0\par
+\cf1      \cf2 <\cf3 th\cf0  \cf4 width\cf1 =\cf5\i "150"\cf2\i0 >\cf1 Email\cf2 </\cf3 th\cf2 >\cf0\par
+\cf1      \cf2 <\cf3 th\cf0  \cf4 width\cf1 =\cf5\i "200"\cf2\i0 >\cf1\f0\'c1\'d6\'bc\'d2\cf2\f1 </\cf3 th\cf2 >\cf0\par
+\cf1    \cf2 </\cf3 tr\cf2 >\cf0\par
+\cf1   \cf7 <%\cf0\par
+\cf1   Connection con=\cf8\b null\cf1\b0 ;\cf0\par
+\cf1   Statement stmt=\cf8\b null\cf1\b0 ;\cf0\par
+\cf1   ResultSet rs=\cf8\b null\cf1\b0 ;\cf0\par
+\cf1   \cf0\par
+\cf8\b try\cf1\b0\{\cf0\par
+\cf1  \cf9 // \f0\'c7\'f6\'c0\'e7\f1  \f0\'c8\'af\'b0\'e6\'c0\'c7\f1  naming Context \f0\'c8\'b9\'b5\'e6\'c7\'cf\'b1\'e2\f1  \cf0\par
+\cf1  Context ct=\cf8\b new\cf1\b0  InitialContext();  \cf0\par
+\par
+\cf9 //InitialContext()\f0\'b4\'c2\f1  \f0\'c0\'a5\f1  \f0\'be\'ee\'c7\'c3\'b8\'ae\'c4\'c9\'c0\'cc\'bc\'c7\'c0\'cc\f1  \f0\'c3\'b3\'c0\'bd\'c0\'b8\'b7\'ce\f1  \f0\'b9\'e8\'c4\'a1\'b5\'c9\'b6\'a7\f1  \f0\'bc\'b3\'c1\'a4\'b5\'c7\'b0\'ed\cf0\f1\par
+\cf9 //\f0\'b8\'f0\'b5\'e7\f1  \f0\'bc\'b3\'c1\'a4\'b5\'c8\f1  \f0\'bf\'a3\'c6\'ae\'b8\'ae\'bf\'cd\f1  \f0\'c0\'da\'bf\'f8\'c0\'ba\f1  JNDI namespace \f0\'c0\'c7\f1  java:comp/env \f0\'ba\'ce\'ba\'d0\'bf\'a1\f1  \cf0\par
+\cf9 //\f0\'b3\'f5\'c0\'cc\'b0\'d4\f1  \f0\'b5\'cb\'b4\'cf\'b4\'d9\f1 .\cf0\par
+\cf9 //\f0\'b1\'d7\'b7\'a1\'bc\'ad\f1  \f0\'c0\'da\'bf\'f8\f1  \f0\'c1\'a2\'b1\'d9\'c0\'bb\f1  Context ct=new InitialContext();\f0\'c0\'cc\'b7\'b8\'b0\'d4\f1  \f0\'c7\'d5\'b4\'cf\'b4\'d9\cf0\f1\par
+\par
+\cf1 Context envCt=(Context)ct.lookup(\cf5 "java:comp/env"\cf1 );\cf0\par
+\cf9 //JNDI\f0\'bf\'a1\f1  \f0\'b5\'ee\'b7\'cf\'b5\'c8\f1  \f0\'bb\'fd\'bc\'ba\'c7\'d2\f1  \f0\'c0\'da\'bf\'f8\f1  \f0\'c0\'cc\'b8\'a7\f1  (\f0\'c1\'ef\f1 . \f0\'c4\'c1\'c5\'d8\'bd\'ba\'c6\'ae\'bf\'a1\f1  \f0\'b4\'eb\'c7\'d1\f1  \f0\'bb\'f3\'b4\'eb\'c0\'fb\'c0\'ce\f1  \f0\'c0\'cc\'b8\'a7\f1 ) \cf0\par
+\par
+\cf1 DataSource ds=(DataSource)envCt.lookup(\cf5 "jdbc/mysql"\cf1 );\cf0\par
+\cf9 //server.xml,context.xml,web.xml \f0\'bf\'a1\'bc\'ad\f1  \f0\'bc\'b3\'c1\'a4\'c7\'d8\'b3\'f5\'c0\'ba\f1  \f0\'c0\'cc\'b8\'a7\cf0\f1\par
+\par
+\cf1 con=ds.getConnection();\cf9 //Connection \f0\'be\'f2\'b1\'e2\f1  \cf0\par
+\par
+\cf1 String sql=\cf5 "select * from test"\cf1 ;\cf0\par
+\cf1 stmt=con.createStatement();\cf0\par
+\cf1 rs=stmt.executeQuery(sql);\cf0\par
+\par
+\cf8\b while\cf1\b0 (rs.next())\cf0\par
+\cf1\{\cf0\par
+\cf1   String name=rs.getString(\cf5 "name"\cf1 );\cf0\par
+\cf1   String email=rs.getString(\cf5 "email"\cf1 );\cf0\par
+\cf1   String addr=rs.getString(\cf5 "addr"\cf1 );\cf0\par
+\cf1   \cf7 %>\cf0\par
+\cf1   \cf2 <\cf3 tr\cf2 >\cf0\par
+\cf1      \cf2 <\cf3 td\cf2 >\cf7 <%=\cf1  name\cf7 %>\cf2 </\cf3 td\cf2 >\cf0\par
+\cf1      \cf2 <\cf3 td\cf2 >\cf7 <%=\cf1  email\cf7 %>\cf2 </\cf3 td\cf2 >\cf0\par
+\cf1      \cf2 <\cf3 td\cf2 >\cf7 <%=\cf1  addr\cf7 %>\cf2 </\cf3 td\cf2 >\cf0\par
+\cf1    \cf2 </\cf3 tr\cf2 >\cf0\par
+\cf1   \cf7 <%\cf0\par
+\cf1  \}\cf9 //while\cf0\par
+\cf1  rs.close();\cf0\par
+\cf1  stmt.close();\cf0\par
+\cf1  con.close();\cf0\par
+\cf1\}\cf8\b catch\cf1\b0 (Exception ex)\{\}\cf0\par
+\cf7 %>\cf0\par
+\cf1  \cf2 </\cf3 table\cf2 >\cf0\par
+\cf2 </\cf3 body\cf2 >\cf0\par
+\cf2 </\cf3 html\cf2 >\par
+\par
+\cf0\lang18\f0\fs20\par
+}
+ 
