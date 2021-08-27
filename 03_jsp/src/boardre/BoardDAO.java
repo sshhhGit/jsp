@@ -130,9 +130,9 @@ public class BoardDAO {
 			System.out.println("getList() 예외 : " + ex1);
 		}finally{
 			try {
-				if(con != null){con.close();}
 				if(rs != null){rs.close();}
 				if(stmt != null){stmt.close();}
+				if(con != null){con.close();}
 			} catch (Exception ex2) {}
 		}//finally-end
 		return vec;
@@ -152,8 +152,8 @@ public class BoardDAO {
 			System.out.println("upCount() 예외 : " + ex1);
 		} finally{
 			try {
-				if(con != null){con.close();}
 				if(pstmt != null){pstmt.close();}
+				if(con != null){con.close();}
 			} catch (Exception ex2) {}
 		}//finally-end
 	}//upCount()-end
@@ -189,9 +189,9 @@ public class BoardDAO {
 			System.out.println("getBoard() 예외 : " + ex1);
 		} finally{
 			try {
-				if(con != null){con.close();}
-				if(pstmt != null){pstmt.close();}
 				if(rs != null){rs.close();}
+				if(pstmt != null){pstmt.close();}
+				if(con != null){con.close();}
 			} catch (Exception ex2) {}
 		}//finally-end
 		return dto;
@@ -218,9 +218,84 @@ public class BoardDAO {
 			System.out.println("updateBoard() 예외 : " + ex1);
 		} finally{
 			try {
-				if(con != null){con.close();}
 				if(pstmt != null){pstmt.close();}
+				if(con != null){con.close();}
 			} catch (Exception ex2) {}
 		}//finally-end
 	}//updateBoard()-end
+	//=====================
+	//글삭제
+	//=====================
+	public void deleteBoard(int num) {
+		try {
+			con = DriverManager.getConnection(URL, USER, PWD);
+			sql = "delete from board where num=" + num;
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate(); //쿼리 수행
+		} catch (Exception ex1) {
+			System.out.println("deleteBoard() : " + ex1);
+		} finally{
+			try {
+				if(pstmt != null){pstmt.close();}
+				if(con != null){con.close();}
+			} catch (Exception ex2) {}
+		}//finally-end
+	}//deleteBoard()-end
+	//====================
+	//답글 위치 확보
+	//====================
+	public void replyPos(BoardDTO dto) {
+		try {
+			con = DriverManager.getConnection(URL, USER, PWD);
+			sql = "update board set pos=pos+1 where pos>?";
+			
+			pstmt = con.prepareStatement(sql); 
+			pstmt.setInt(1, dto.getPos());
+			
+			pstmt.executeUpdate();
+		} catch (Exception ex1) {
+			System.out.println("replyPos() : " + ex1);
+		} finally{
+			try {
+				if(pstmt != null){pstmt.close();}
+				if(con != null){con.close();}
+			} catch (Exception ex2) {}
+		}//finally-end
+	}//replyPos-end
+	//=============
+	//답글 쓰기
+	//=============
+	public void replyBoard(BoardDTO dto) {
+		try {
+			con = DriverManager.getConnection(URL, USER, PWD);
+			int depth = dto.getDepth()+1;
+			int pos = dto.getPos()+1;
+			
+			sql = "insert into board(name,subject,content,pos,depth,regdate,pw,count,ip) values(?,?,?,?,?,NOW(),?,?,?)";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			//"?"값 채우기
+			pstmt.setString(1, dto.getName());
+			pstmt.setString(2, dto.getSubject());
+			pstmt.setString(3, dto.getContent());
+			
+			pstmt.setInt(4, pos);
+			pstmt.setInt(5, depth);
+			//날짜-NOW()
+			pstmt.setString(6, dto.getPw());
+			pstmt.setInt(7, dto.getCount());
+			pstmt.setString(8, dto.getIp());
+			
+			pstmt.executeUpdate(); //쿼리 수행
+		} catch (Exception ex1) {
+			System.out.println("replyBoard() : " + ex1);
+		} finally{
+			try {
+				if(pstmt != null){pstmt.close();}
+				if(con != null){con.close();}
+			} catch (Exception ex2) {}
+		}//finally-end	
+	}//replyBoard()-end
 }

@@ -62,7 +62,7 @@ String content = dto.getContent();
             <td>암호</td>
             <td>
             <input type="password" name="pw" size="15">
-            <font color="red">*수정하려면 암호는 필수입니다.</font>
+            <font color="red" size="1">*수정하려면 암호는 필수입니다.</font>
             </td>
           </tr>
           <tr>

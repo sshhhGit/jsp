@@ -85,9 +85,9 @@ int count = dto.getCount();
       <tr>
         <td colspan="4" align="center">
         [<a href="javaScript:list()">리스트</a>]
-        [<a href="updateForm.jsp?page=<%=nowPage%>%num=<%=num%>">글수정</a>]
-        [<a href="replyForm.jsp?page=<%=nowPage%>%num=<%=num%>">답글</a>]
-        [<a href="deleteForm.jsp?page=<%=nowPage%>%num=<%=num%>">글삭제</a>]
+        [<a href="updateForm.jsp?page=<%=nowPage%>&num=<%=num%>">글수정</a>]
+        [<a href="replyForm.jsp?page=<%=nowPage%>&num=<%=num%>">답글</a>]
+        [<a href="deleteForm.jsp?page=<%=nowPage%>&num=<%=num%>">글삭제</a>]
         [<a href="writeForm.jsp">새글</a>]
         </td>
       </tr>
