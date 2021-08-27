@@ -1,5 +1,5 @@
 mysql> create table board1( 						
-    num int not null auto_increment primary key,	//글번호
+    num int not null auto_increment primary key,	//글번
     writer varchar(30) not null,					//글쓴이
     subject varchar(50) not null,					//글제목
     content text not null,							//글내용
